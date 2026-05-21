@@ -83,10 +83,12 @@ def process_entry(path: Path, auth, handle: str) -> str:
         media_id = None
         if data.get("image_path"):
             img = Path(data["image_path"])
+            if not img.is_absolute():
+                # New format (2026-05-21〜): relative to QUEUE_ROOT.
+                img = xl.QUEUE_ROOT / img
             if not img.exists():
-                # Fallback: image_path may be a Mac-local absolute path stored at
-                # enqueue time. On the GitHub Actions runner the prefix differs,
-                # so resolve by basename against the queue _media/ dir.
+                # Fallback for legacy absolute Mac paths: resolve by basename
+                # against the queue _media/ dir so the GHA runner can find it.
                 alt = xl.QUEUE_ROOT / "_media" / img.name
                 if alt.exists():
                     img = alt

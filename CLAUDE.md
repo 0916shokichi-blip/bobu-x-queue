@@ -37,7 +37,7 @@ Mac:                          GitHub Actions:
 ## 編集時の判断軸
 
 - **`scripts/x_lib.py` の `QUEUE_ROOT`**: env var で path override 可。Mac と GHA runner で異なるパスに展開されるので、JSON 内の絶対パスは GHA で解決不可
-- **`image_path` の絶対パス問題（解決済、2026-05-21 5bfae47）**: x-enqueue.py は今も Mac 絶対パスで `image_path` を書く。x-submit.py 側に basename fallback (`xl.QUEUE_ROOT / "_media" / img.name`) があるため Mac/Linux 両方で動く。x-enqueue.py 側を relative に書き換える根本修正は punt（fallback で実用十分）
+- **`image_path` の絶対パス問題（解決済、2026-05-21）**: 2 段階で fix。(1) `5bfae47` x-submit.py に basename fallback、(2) x-enqueue.py が今後 `_media/...` 相対パスで書く根本修正 + x-submit.py が `is_absolute()` で新旧分岐。既存の絶対パス pending JSON は fallback で投稿可、新規 enqueue は最初から相対 = Mac/Linux 両方で動く
 - **Secrets rotation**: `X_CONSUMER_KEY` 等の指紋（先頭 8 文字）が `x status` で出る = GHA log と突合し divergent 検出。rotation 手順は memory `secret_rotation_safe_order`
 - **commit/push 委任**: bot 自身が main 直 push する routine repo だが、Claude による main 直 push は `commit_delegation_policy` の例外 = user 明示承認が要る（5/21 N=1 で確認）
 

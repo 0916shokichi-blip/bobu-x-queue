@@ -160,7 +160,10 @@ def main() -> None:
         src = Path(image_orig)
         dst = MEDIA / f"{base_stem}{src.suffix}"
         shutil.copy2(src, dst)
-        image_path = str(dst)
+        # Store path relative to QUEUE_ROOT so GitHub Actions runner can
+        # resolve it (the runner's checkout path differs from Mac local).
+        # x-submit.py also has a basename fallback for old absolute paths.
+        image_path = str(dst.relative_to(xl.QUEUE_ROOT))
 
     entry = {
         "mode": mode,
