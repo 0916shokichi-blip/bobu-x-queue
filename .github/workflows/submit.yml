@@ -28,6 +28,15 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      - name: Print auth fingerprint (rotate divergent 検出用)
+        env:
+          X_CONSUMER_KEY: ${{ secrets.X_CONSUMER_KEY }}
+          X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
+        run: |
+          echo "auth fingerprint (compare with Mac \`x status\`):"
+          echo "  X_CONSUMER_KEY[:8]: ${X_CONSUMER_KEY:0:8}..."
+          echo "  X_ACCESS_TOKEN[:8]: ${X_ACCESS_TOKEN:0:8}..."
+
       - name: Submit pending tweets
         env:
           X_QUEUE_ROOT: ${{ github.workspace }}/queue
@@ -45,7 +54,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add queue/
           if ! git diff --cached --quiet; then
-            git commit -m "submit: process pending queue [skip ci]"
+            git commit -m "bot/submit: process pending queue [skip ci]"
             for i in 1 2 3; do
               git pull --rebase --autostash && git push && break
               echo "push retry $i"

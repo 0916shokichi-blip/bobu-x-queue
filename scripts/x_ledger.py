@@ -15,15 +15,20 @@ API:
 from __future__ import annotations
 
 import json
+import os
 from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Iterator
 
 import fcntl
 
-CONTINUITY = Path.home() / ".claude" / "x-queue" / ".continuity.json"
-QUOTA = Path.home() / ".claude" / "x-queue" / ".quota.json"
+_QUEUE_ROOT = Path(os.environ.get("X_QUEUE_ROOT", str(Path.home() / ".claude" / "x-queue")))
+CONTINUITY = _QUEUE_ROOT / ".continuity.json"
+QUOTA = _QUEUE_ROOT / ".quota.json"
 
+from datetime import timezone
+
+JST = timezone(timedelta(hours=9))
 KEEP_DAYS = 90
 
 
@@ -78,16 +83,15 @@ def recent_posts(days: int = 7) -> list[tuple[str, datetime]]:
         data = json.loads(CONTINUITY.read_text())
     except Exception:
         return []
-    cutoff = datetime.now() - timedelta(days=days)
+    cutoff = datetime.now(JST) - timedelta(days=days)
     out: list[tuple[str, datetime]] = []
     for p in data.get("posts", []):
         try:
             ts = datetime.fromisoformat(p["posted_at"])
         except Exception:
             continue
-        # strip tz for comparison (we work in JST-ish wall clock)
-        if ts.tzinfo is not None:
-            ts = ts.replace(tzinfo=None)
+        if ts.tzinfo is None:
+            ts = ts.replace(tzinfo=JST)
         if ts >= cutoff:
             out.append((p.get("text", ""), ts))
     return out
@@ -100,7 +104,7 @@ FREE_READ_BUDGET = 100
 
 
 def _current_month_key(now: datetime | None = None) -> str:
-    now = now or datetime.now()
+    now = now or datetime.now(JST)
     return now.strftime("%Y-%m")
 
 
@@ -119,7 +123,7 @@ def _bump(kind: str, n: int) -> dict:
         m[kind] = m.get(kind, 0) + n
         data[month] = m
         # prune months older than 12
-        cutoff = datetime.now() - timedelta(days=370)
+        cutoff = datetime.now(JST).replace(tzinfo=None) - timedelta(days=370)
         for k in list(data.keys()):
             try:
                 if datetime.strptime(k, "%Y-%m") < cutoff:
