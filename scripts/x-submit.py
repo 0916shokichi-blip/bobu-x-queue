@@ -84,7 +84,14 @@ def process_entry(path: Path, auth, handle: str) -> str:
         if data.get("image_path"):
             img = Path(data["image_path"])
             if not img.exists():
-                raise FileNotFoundError(f"image missing: {img}")
+                # Fallback: image_path may be a Mac-local absolute path stored at
+                # enqueue time. On the GitHub Actions runner the prefix differs,
+                # so resolve by basename against the queue _media/ dir.
+                alt = xl.QUEUE_ROOT / "_media" / img.name
+                if alt.exists():
+                    img = alt
+                else:
+                    raise FileNotFoundError(f"image missing: {img}")
             media_id = upload_media(auth, img)
         result = post_tweet(
             auth,
