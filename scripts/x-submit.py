@@ -20,6 +20,7 @@ import requests
 
 import x_lib as xl
 import x_ledger as xledger
+import vault_export as xvault
 
 MAX_ATTEMPTS = 3
 TWEET_ENDPOINT = "https://api.x.com/2/tweets"
@@ -116,6 +117,13 @@ def process_entry(path: Path, auth, handle: str) -> str:
             xledger.record_post(data["text"], now.replace(tzinfo=None), tweet_id)
         except Exception as e:
             xl.log("submit", f"ledger update failed (non-fatal): {e}")
+
+        # vault export (Obsidian 振り返り用、non-fatal)
+        try:
+            md_path = xvault.export_entry(data)
+            xl.log("submit", f"vault export ok: {md_path}")
+        except Exception as e:
+            xl.log("submit", f"vault export failed (non-fatal): {e}")
 
         xl.log("submit", f"posted {path.name} -> {data['tweet_url']}")
         print(data["tweet_url"])  # stdout: URL for easy copy / browser open
