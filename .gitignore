@@ -1,0 +1,22 @@
+# secrets - 絶対 commit しない
+*.env
+*.env.local
+.env*
+secrets/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# OS
+.DS_Store
+
+# logs (runtime 生成、git に入れない)
+logs/
+
+# lockfiles (queue が並列実行ガード用に使う、git 不要)
+queue/.submit.lock
+queue/.retro.lock

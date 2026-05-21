@@ -1,0 +1,56 @@
+name: submit pending tweets
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: x-queue-write
+  cancel-in-progress: false
+
+jobs:
+  submit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Submit pending tweets
+        env:
+          X_QUEUE_ROOT: ${{ github.workspace }}/queue
+          X_LOG_DIR: ${{ github.workspace }}/logs
+          X_CONSUMER_KEY: ${{ secrets.X_CONSUMER_KEY }}
+          X_CONSUMER_SECRET: ${{ secrets.X_CONSUMER_SECRET }}
+          X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
+          X_ACCESS_TOKEN_SECRET: ${{ secrets.X_ACCESS_TOKEN_SECRET }}
+          X_HANDLE: bobu_reflect
+        run: python scripts/x-submit.py
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add queue/
+          if ! git diff --cached --quiet; then
+            git commit -m "submit: process pending queue [skip ci]"
+            for i in 1 2 3; do
+              git pull --rebase --autostash && git push && break
+              echo "push retry $i"
+              sleep 5
+            done
+          else
+            echo "no changes to commit"
+          fi
