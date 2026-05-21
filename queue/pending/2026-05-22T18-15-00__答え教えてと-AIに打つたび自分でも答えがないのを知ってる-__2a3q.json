@@ -1,0 +1,19 @@
+{
+  "mode": "post",
+  "text": "「答え教えて」と AIに打つたび、自分でも答えがないのを知ってる。\nぼぶに同じことを打ったら6字で返ってきた。\n\n— 映す世界を間違えた",
+  "image_path": "/Users/higashishota/projects/bobu-x-queue/queue/_media/2026-05-22T18-15-00__答え教えてと-AIに打つたび自分でも答えがないのを知ってる-__2a3q.png",
+  "image_orig": "/Users/higashishota/Desktop/x　投稿画像/single-kotae-oshiete.png",
+  "quote_tweet_id": null,
+  "reply_to_id": null,
+  "scheduled_at": "2026-05-22T18:15:00+09:00",
+  "source": "x-post-series",
+  "created_at": "2026-05-21T16:04:10.019254+09:00",
+  "attempts": 0,
+  "guard_report": [
+    {
+      "level": "warn",
+      "code": "G5",
+      "msg": "no philosophy-chat URL (https://philosophy-chat-two.vercel.app) in post text"
+    }
+  ]
+}

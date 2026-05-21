@@ -1,0 +1,22 @@
+{
+  "mode": "post",
+  "text": "API キー貫通テスト3 1352",
+  "image_path": null,
+  "image_orig": null,
+  "quote_tweet_id": null,
+  "reply_to_id": null,
+  "scheduled_at": "2026-05-21T13:52:10.370885+09:00",
+  "source": "x-cli",
+  "created_at": "2026-05-21T13:52:10.371738+09:00",
+  "attempts": 0,
+  "guard_report": [
+    {
+      "level": "warn",
+      "code": "G5",
+      "msg": "no philosophy-chat URL (https://philosophy-chat-two.vercel.app) in post text"
+    }
+  ],
+  "posted_at": "2026-05-21T13:52:10.461967+09:00",
+  "tweet_id": "2057323560109269331",
+  "tweet_url": "https://x.com/bobu_reflect/status/2057323560109269331"
+}
