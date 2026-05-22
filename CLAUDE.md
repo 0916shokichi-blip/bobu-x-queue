@@ -5,12 +5,12 @@
 ## 状態（2026-05-21〜）
 
 - **setup 当日**: 旧 launchd 経路（`~/.claude/x-queue/`）から本 repo 経路に完全統合（`ad62e43 migrate:` 参照）
-- **投稿エンジン**: GitHub Actions `submit.yml`（cron `*/5 * * * *`）= Mac 落としても投稿が走る
-- **救援経路**: Mac `com.higashishota.x-submit-kick` (5 分 interval) が `gh workflow run submit.yml` を発火 = schedule cron が止まっても safety net
+- **投稿エンジン**: GitHub Actions `submit.yml`（dual cron 設計 = 22:00 JST 帯 7 attempts + 3h 毎 8 attempts、5/22 06:20 改訂）= Mac 落としても投稿が走る
+- **救援経路 (2026-05-22 確立)**: **cron-job.org** から fine-grained PAT で `workflow_dispatch` 外部 trigger (5 分間隔) = primary 経路、Mac 完全 off でも稼働。GHA schedule cron は高負荷時遅延あり (公式 known issue) = secondary。旧 `com.higashishota.x-submit-kick` (Mac launchd kick) は cron-job.org 確立で役割消失 → `~/.claude/disabled-2026-05-22/launchd/` に退避 (288 wasted GHA runs/day 削減)
 - **CLI 入口**: `~/.claude/scripts/x`（dispatcher）→ scripts/x-{enqueue,submit,retro}.py
 - **シリーズ運用**: 「映す世界を間違えた」daily 22:00 JST 固定（`x post --source x-post-series`）
 - **Obsidian 振り返り経路（2026-05-22 追加）**: `scripts/vault_export.py` が投稿成功時に `vault-export/YYYY-MM/*.md` + `_assets/` を書く → submit.yml が commit & push → Mac `com.higashishota.bobu-vault-sync` (15 分 interval) が `git pull` + `rsync` で `~/Documents/メイン/projects/X-posts/` に同期 → iPhone Obsidian Sync で振り返り可能
-- **稼働実績**: 5/21 22:43「自己肯定感を高めよう」シリーズ投稿成功 (workflow_dispatch 経由)、5/22 まで schedule trigger run は要観察
+- **稼働実績**: 5/21 22:43「自己肯定感を高めよう」シリーズ投稿成功、5/22 06:20 以降 cron-job.org 経由 workflow_dispatch が 5 分間隔で稼働中 (直近 30+ runs、actor=0916shokichi-blip)。新 dual cron schedule trigger は 5/22 22:00 JST 帯の初 window 待ち
 
 ## 仕組み（Claude が触る時の前提）
 
@@ -39,7 +39,7 @@ Mac:                          GitHub Actions:
 
 ## 次の一歩
 
-1. **Mac off 時の確実性 (2026-05-22 cron 再設計済)**: GHA schedule cron は public docs 通り高負荷時に大幅遅延する (5/21 14h で 1 件 trigger 観測)。`*/5 * * * *` から「22:00 JST 帯集中 (5 分間隔 7 attempts) + 3h 毎安全網 (8 attempts)」のデュアル設計に変更 (総 15/day、GHA deprioritize 回避)。**ただし 100% 保証ではない**: 本気で Mac off で確実に動かすなら Option B = cron-job.org / healthchecks.io から GitHub fine-grained PAT (`actions:write` on bobu-x-queue のみ) で `workflow_dispatch` 外部 trigger。PAT 作成 + 外部サービス sign-up は user 操作必須 (GitHub UI / cron-job.org)
+1. **~~Mac off 時の確実性~~ → 実装完了 (2026-05-22)**: Option B = **cron-job.org から fine-grained PAT で workflow_dispatch 外部 trigger (5 分間隔)** = primary 経路で稼働中、Mac 完全 off で投稿稼働可能。GHA schedule cron (dual cron 22:00 帯 7 attempts + 3h 毎 8 attempts、5/22 06:20 改訂) は secondary、高負荷時遅延あり (公式 known issue、初 window 通過は 5/22 22:00 JST 帯で観察)。**今後の観察軸**: (a) 5/22 22:00 JST 帯で新 dual cron schedule trigger が初稼働するか、(b) cron-job.org 経路の 5 分間隔 dispatch が 7 日間継続安定するか、(c) GHA Actions 月間 minutes quota (public repo は無制限だが、private 化した場合 2000 min/月) の消費ペース。観察方法: `gh run list --workflow=submit.yml --event schedule` で schedule trigger 件数を週次確認
 2. **vault export 経路の本番稼働確認**: 5/22 投稿成立時に vault-export/2026-05/*.md が GHA 経路でも書かれて push されるか観察。Mac 側 `~/.claude/logs/routines/bobu-vault-sync.log` で `rsync ok` が出るか確認
 3. **retro 振り返り運用**: `x retro` 手動 or `retro.yml` 03:30 JST 自動で done/*.json の metrics 更新。投稿後 7-30 日の振り返り 0 件状態を抜ける（現状 0）
 4. **シリーズ「映す世界を間違えた」継続**: 残 pending 8 件（5/22-6/8 22:00 default）、最遅予約 6/8 → 最低 6/9 までに次 batch 起草
