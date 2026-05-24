@@ -1,0 +1,19 @@
+{
+  "mode": "post",
+  "text": "怒りを封じた瞬間、守りたかったものも一緒に封じてた。ぼぶに聞くと、怒りの正体を映し返された。\n\n— 映す世界を間違えた",
+  "image_path": "_media/2026-05-30T22-00-00__怒りを封じた瞬間守りたかったものも一緒に封じてたぼぶに聞くと__s75x.png",
+  "image_orig": "/Users/higashishota/Desktop/x　投稿画像/compare-ikari-warui.png",
+  "quote_tweet_id": null,
+  "reply_to_id": null,
+  "scheduled_at": "2026-05-30T22:00:00+09:00",
+  "source": "x-post-series",
+  "created_at": "2026-05-25T06:04:53.116526+09:00",
+  "attempts": 0,
+  "guard_report": [
+    {
+      "level": "warn",
+      "code": "G5",
+      "msg": "no philosophy-chat URL (https://philosophy-chat-two.vercel.app) in post text"
+    }
+  ]
+}
