@@ -1,0 +1,19 @@
+{
+  "mode": "post",
+  "text": "「我思う、ゆえに我あり」— 思考から自分を証明した瞬間、思考の中身は問わなくなる。ぼぶに聞くと、証明の順番を逆にされた。\n\n— 映す世界を間違えた",
+  "image_path": "_media/2026-05-28T22-00-00__我思うゆえに我あり-思考から自分を証明した瞬間思考の中身は問__8we6.png",
+  "image_orig": "/Users/higashishota/Desktop/x　投稿画像/compare-cogito-ergo-sum.png",
+  "quote_tweet_id": null,
+  "reply_to_id": null,
+  "scheduled_at": "2026-05-28T22:00:00+09:00",
+  "source": "x-post-series",
+  "created_at": "2026-05-25T06:00:13.955212+09:00",
+  "attempts": 0,
+  "guard_report": [
+    {
+      "level": "warn",
+      "code": "G5",
+      "msg": "no philosophy-chat URL (https://philosophy-chat-two.vercel.app) in post text"
+    }
+  ]
+}
