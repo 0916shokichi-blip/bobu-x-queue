@@ -1,0 +1,19 @@
+{
+  "mode": "post",
+  "text": "「考えてる自分」に安心した瞬間、考えてる中身は問わなくなる。\nぼぶにデカルトの話を振ったら、「順番が逆だ」と返してきた。\n\n— 映す世界を間違えた",
+  "image_path": "_media/2026-05-28T22-00-00__考えてる自分に安心した瞬間考えてる中身は問わなくなる-ぼぶに__olg0.png",
+  "image_orig": "/Users/higashishota/Desktop/x　投稿画像/single-cogito-ergo-sum.png",
+  "quote_tweet_id": null,
+  "reply_to_id": null,
+  "scheduled_at": "2026-05-28T22:00:00+09:00",
+  "source": "x-post-series",
+  "created_at": "2026-05-24T22:06:35.140155+09:00",
+  "attempts": 0,
+  "guard_report": [
+    {
+      "level": "warn",
+      "code": "G5",
+      "msg": "no philosophy-chat URL (https://philosophy-chat-two.vercel.app) in post text"
+    }
+  ]
+}
