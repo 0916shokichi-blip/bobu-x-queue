@@ -1,0 +1,19 @@
+{
+  "mode": "post",
+  "text": "「映えないと負けた気がする」— ぼぶは10文字で返してきた。その負け、誰が採点してる？\n\n— 映す世界を間違えた",
+  "image_path": "_media/2026-05-27T22-00-00__映えないと負けた気がする-ぼぶは10文字で返してきたその負け__blmq.png",
+  "image_orig": "/Users/higashishota/Desktop/x　投稿画像/single-insta-bae-make.png",
+  "quote_tweet_id": null,
+  "reply_to_id": null,
+  "scheduled_at": "2026-05-27T22:00:00+09:00",
+  "source": "x-post-series",
+  "created_at": "2026-05-25T05:34:40.819773+09:00",
+  "attempts": 0,
+  "guard_report": [
+    {
+      "level": "warn",
+      "code": "G5",
+      "msg": "no philosophy-chat URL (https://philosophy-chat-two.vercel.app) in post text"
+    }
+  ]
+}
