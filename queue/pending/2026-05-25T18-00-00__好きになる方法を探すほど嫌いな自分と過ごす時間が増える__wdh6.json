@@ -8,7 +8,7 @@
   "scheduled_at": "2026-05-25T18:00:00+09:00",
   "source": "x-cli",
   "created_at": "2026-05-25T07:04:08.562400+09:00",
-  "attempts": 1,
+  "attempts": 2,
   "guard_report": [],
   "last_error": "tweet post 403: {\"detail\":\"Quoting this post is not allowed because you have not been mentioned or are not part of the conversation thread of the post you are quoting.\",\"type\":\"about:blank\",\"title\":\"Forbidden\",\"status\":403}"
 }
