@@ -1,0 +1,19 @@
+{
+  "mode": "post",
+  "text": "「冷静になれ」で怒りを封じるたび、怒りの中にあった正当性も一緒に消えてた。\nぼぶは正論で封じる構造そのものを斬ってきた。\n— 映す世界を間違えた",
+  "image_path": "_media/2026-06-06T22-00-00__冷静になれで怒りを封じるたび怒りの中にあった正当性も一緒に消__6zro.png",
+  "image_orig": "/Users/higashishota/Desktop/x　投稿画像/compare-reisei-ni-nare.png",
+  "quote_tweet_id": null,
+  "reply_to_id": null,
+  "scheduled_at": "2026-06-06T22:00:00+09:00",
+  "source": "x-post-series",
+  "created_at": "2026-05-26T16:01:44.380857+09:00",
+  "attempts": 0,
+  "guard_report": [
+    {
+      "level": "warn",
+      "code": "G5",
+      "msg": "no philosophy-chat URL (https://philosophy-chat-two.vercel.app) in post text"
+    }
+  ]
+}
