@@ -19,5 +19,19 @@
   "last_error": "image missing: /Users/higashishota/projects/bobu-x-queue/queue/_media/2026-05-21T18-45-00__自己肯定感を高めようを反復して何かが残った気がしないぼぶは肯__nxep.png",
   "posted_at": "2026-05-21T22:43:54.624194+09:00",
   "tweet_id": "2057457361241907252",
-  "tweet_url": "https://x.com/bobu_reflect/status/2057457361241907252"
+  "tweet_url": "https://x.com/bobu_reflect/status/2057457361241907252",
+  "public_metrics": {
+    "retweet_count": 0,
+    "reply_count": 0,
+    "like_count": 0,
+    "quote_count": 0,
+    "bookmark_count": 0,
+    "impression_count": 103
+  },
+  "non_public_metrics": {
+    "impression_count": 103,
+    "user_profile_clicks": 0,
+    "engagements": 1
+  },
+  "metrics_pulled_at": "2026-05-29T05:43:10.175958+09:00"
 }
