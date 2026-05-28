@@ -1,0 +1,19 @@
+{
+  "mode": "post",
+  "text": "「足るを知る」を知った瞬間、自分の中の動機も整理した気でいた。ぼぶは止まらせず、燃料の在処を問い返してきた。\n— 映す世界を間違えた",
+  "image_path": "_media/2026-06-11T22-00-00__足るを知るを知った瞬間自分の中の動機も整理した気でいたぼぶは__cgvu.png",
+  "image_orig": "/Users/higashishota/Desktop/x　投稿画像/compare-tarutoshiru.png",
+  "quote_tweet_id": null,
+  "reply_to_id": null,
+  "scheduled_at": "2026-06-11T22:00:00+09:00",
+  "source": "x-post-series",
+  "created_at": "2026-05-28T15:52:02.232278+09:00",
+  "attempts": 0,
+  "guard_report": [
+    {
+      "level": "warn",
+      "code": "G5",
+      "msg": "no philosophy-chat URL (https://philosophy-chat-two.vercel.app) in post text"
+    }
+  ]
+}
