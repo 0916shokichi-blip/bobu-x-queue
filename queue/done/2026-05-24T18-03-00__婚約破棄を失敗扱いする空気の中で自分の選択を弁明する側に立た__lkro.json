@@ -18,5 +18,19 @@
   ],
   "posted_at": "2026-05-24T22:00:31.754071+09:00",
   "tweet_id": "2058533607711314042",
-  "tweet_url": "https://x.com/bobu_reflect/status/2058533607711314042"
+  "tweet_url": "https://x.com/bobu_reflect/status/2058533607711314042",
+  "public_metrics": {
+    "retweet_count": 0,
+    "reply_count": 0,
+    "like_count": 0,
+    "quote_count": 0,
+    "bookmark_count": 0,
+    "impression_count": 139
+  },
+  "non_public_metrics": {
+    "engagements": 1,
+    "user_profile_clicks": 1,
+    "impression_count": 140
+  },
+  "metrics_pulled_at": "2026-06-01T04:48:58.341986+09:00"
 }
