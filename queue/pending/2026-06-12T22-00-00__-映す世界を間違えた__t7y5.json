@@ -1,0 +1,24 @@
+{
+  "mode": "post",
+  "text": "— 映す世界を間違えた",
+  "image_path": "_media/2026-06-12T22-00-00__-映す世界を間違えた__t7y5.png",
+  "image_orig": "/Users/higashishota/Desktop/x　投稿画像/single-suki-wo-shigoto.png",
+  "quote_tweet_id": null,
+  "reply_to_id": null,
+  "scheduled_at": "2026-06-12T22:00:00+09:00",
+  "source": "x-post-series",
+  "created_at": "2026-06-10T07:24:08.092382+09:00",
+  "attempts": 0,
+  "guard_report": [
+    {
+      "level": "warn",
+      "code": "G5",
+      "msg": "no philosophy-chat URL (https://philosophy-chat-two.vercel.app) in post text"
+    },
+    {
+      "level": "warn",
+      "code": "G7",
+      "msg": "similarity 1.00 to recent post (06-04): — 映す世界を間違えた"
+    }
+  ]
+}
